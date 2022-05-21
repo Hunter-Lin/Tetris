@@ -110,7 +110,11 @@ def blockChange(BlockForm, Form, BlockX, BlockY, WholeGame, WholeGameTem, GameSi
                     WholeGameTem[BlockXX, BlockYY] = WholeGameTem[BlockXX, BlockYY] + 1
                 if WholeGameTem[BlockXX, BlockYY] > 1:
                     # IsDrop = False
-                    WholeGameTem = WholeGameTemTem
+                    if Operate == "R":
+                        BlockX = BlockX - 1
+                    if Operate == "L":
+                        BlockX = BlockX + 1
+                    WholeGameTem = WholeGameTemTem.copy()
                     Mark = False
                     break
 
@@ -124,11 +128,11 @@ def blockChange(BlockForm, Form, BlockX, BlockY, WholeGame, WholeGameTem, GameSi
         Mark = False
 
     if Operate == "Down":
-        return WholeGameTem, Mark, BlockY
+        return WholeGameTem.copy(), Mark, BlockY
     elif Operate == "Spin":
-        return WholeGameTem, BlockX, Form
+        return WholeGameTem.copy(), BlockX, Form
     else:
-        return WholeGameTem, BlockX
+        return WholeGameTem.copy(), BlockX
 
 
 def checkDeletion(WholeGame, GameSize):
